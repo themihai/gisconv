@@ -8,15 +8,20 @@ env:
 before_install:
 - git config --global credential.helper 'cache --timeout 600'
 - echo $GOPATH
+- echo $GOROOT
 install:
 - go get ... &
 - ls -la
 - pwd
 - echo $GOPATH
+- echo $GOROOT
+
 
 before_script:
 - go get ... &
 - echo $GOPATH
+- echo $GOROOT
+
 
 script:
 - pwd
@@ -24,9 +29,13 @@ script:
 - echo "script run"
 - echo $GOPATH
 - ls -la $GOPATH
+- echo $GOROOT
+
 after_success:
 - echo $GOPATH
 - ls -la $GOPATH
+- echo $GOROOT
+
 - echo "PR $TRAVIS_PULL_REQUEST"
 - if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then
 - echo $GOPATH
