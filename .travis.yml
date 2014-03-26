@@ -1,0 +1,33 @@
+language: perl
+perl:
+  - "5.16"
+env:
+  global:
+  - TIMEOUT=1000
+
+before_install:
+- git config --global credential.helper 'cache --timeout 600'
+- echo $GOPATH
+install:
+- go get ... &
+- ls -la
+- pwd
+- echo $GOPATH
+
+before_script:
+- go get ... &
+- echo $GOPATH
+
+script:
+- pwd
+- ls -la
+- echo "script run"
+- echo $GOPATH
+- ls -la $GOPATH
+after_success:
+- echo $GOPATH
+- ls -la $GOPATH
+- echo "PR $TRAVIS_PULL_REQUEST"
+- if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then
+- echo $GOPATH
+- ls -la $GOPATH
